@@ -44,9 +44,11 @@ async function run(): Promise<void> {
       core.info('📌 Getting keygrips');
       for (let keygrip of await gpg.getKeygrips(privateKey.fingerprint)) {
         core.info(`🔓 Presetting passphrase for ${keygrip}`);
-        await gpg.presetPassphrase(keygrip, inputs.passphrase).then(stdout => {
-          core.debug(stdout);
-        });
+        if (inputs.keygrip === keygrip) {
+          await gpg.presetPassphrase(keygrip, inputs.passphrase).then(stdout => {
+            core.debug(stdout);
+          });
+        }
       }
     }
 
