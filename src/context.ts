@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 
 export interface Inputs {
+  keygrip: string;
   gpgPrivateKey: string;
   passphrase: string;
   gitUserSigningkey: boolean;
@@ -14,6 +15,7 @@ export interface Inputs {
 
 export async function getInputs(): Promise<Inputs> {
   return {
+    keygrip: core.getInput('keygrip', {required: false}),
     gpgPrivateKey: core.getInput('gpg-private-key', {required: true}),
     passphrase: core.getInput('passphrase'),
     gitUserSigningkey: /true/i.test(core.getInput('git-user-signingkey')),

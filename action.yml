@@ -7,6 +7,9 @@ branding:
   icon: 'lock'
 
 inputs:
+  keygrip:
+    description: 'The keygrip for the key whose passphrase is set.'
+    required: false
   gpg-private-key:
     description: 'GPG private key exported as an ASCII armored version or its base64 encoding'
     required: true
